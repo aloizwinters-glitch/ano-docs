@@ -1,0 +1,48 @@
+---
+title: Common Errors
+description: Fixes for the most frequent errors when installing ANO scripts.
+---
+
+<Accordions type="single">
+<Accordion title="You lack the required entitlement to use this resource">
+
+The server license key does not belong to the Cfx.re account that bought the script.
+
+- Check that the `sv_licenseKey` in your `server.cfg` was generated on [portal.cfx.re](https://portal.cfx.re) with the **same account** used on the store.
+- If you bought with another account, open a ticket on Discord to have the asset transferred.
+
+</Accordion>
+<Accordion title="Failed to verify protected resource">
+
+The escrowed files are damaged or were modified.
+
+- Download the script again from Keymaster.
+- Upload it with **binary** mode if you use FTP (FileZilla: *Transfer → Transfer type → Binary*).
+- Don't rename the folder or edit encrypted files.
+
+</Accordion>
+<Accordion title="Couldn't find resource / dependency ox_lib">
+
+A dependency is missing or starts after the script. Install it and move its `ensure` line **above** the script in `server.cfg`.
+
+</Accordion>
+<Accordion title="oxmysql: Table doesn't exist">
+
+The `install.sql` file was not imported. Run it in your database and restart the server.
+
+</Accordion>
+<Accordion title="The script doesn't detect my framework">
+
+Set it manually in `config.lua`, for example `Config.Framework = 'qb'`, and make sure your framework starts **before** the script.
+
+</Accordion>
+<Accordion title="Nothing happens / no error">
+
+- Press **F8** in game and look for client errors.
+- Check that your server artifacts and game build are up to date.
+- Set `Config.Debug = true` and share the console output in a Discord ticket.
+
+</Accordion>
+</Accordions>
+
+Still stuck? Open a ticket on [Discord](https://discord.gg/Ab3vYufTh3) with the full error.

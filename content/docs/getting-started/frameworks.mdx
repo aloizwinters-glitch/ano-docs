@@ -1,0 +1,38 @@
+---
+title: Frameworks
+description: How ANO scripts detect and support ESX, QBCore, Qbox, QS-Core and standalone servers.
+---
+
+Every ANO script ships with a **framework bridge**. You don't need a different version for each core: the same files work everywhere.
+
+## Supported frameworks
+
+| Framework | Resource name | Status |
+| --- | --- | --- |
+| Qbox | `qbx_core` | Supported |
+| QS-Core (Quasar) | `qs-core` | Supported |
+| ESX Legacy | `es_extended` | Supported |
+| QBCore | `qb-core` | Supported |
+| Standalone | none | Supported (limited features) |
+
+## Automatic detection
+
+By default the script finds your framework by itself:
+
+```lua title="config.lua"
+Config.Framework = 'auto' -- 'auto', 'qbx', 'qs', 'esx', 'qb' or 'standalone'
+```
+
+The detection order is **Qbox → QS-Core → ESX → QBCore → standalone**. QS-Core ships compatibility bridges named `es_extended` and `qb-core`, so it is checked before them.
+
+If detection picks the wrong core, set `Config.Framework` manually.
+
+## Inventories
+
+The inventory is also detected automatically:
+
+`ox_inventory` → `qs-inventory` → `qs-coreinventory` → `qb-inventory` / `ps-inventory` → framework default.
+
+## Standalone mode
+
+In standalone mode there is no job, money or item system. Features that need them are disabled or use the options in `config.lua`. Each script page says what works in standalone.

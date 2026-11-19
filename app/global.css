@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+/* ANO Scripts palette (same as the Tebex store) */
+:root,
+.dark {
+  --ano-lime: #c3f425;
+  --ano-cyan: #24e0cf;
+  --ano-night: #0b0a14;
+  --ano-surface: #17152b;
+
+  --color-fd-background: #0b0a14;
+  --color-fd-foreground: #f2f3f7;
+  --color-fd-muted: #17152b;
+  --color-fd-muted-foreground: #a3a6bd;
+  --color-fd-popover: #141226;
+  --color-fd-popover-foreground: #f2f3f7;
+  --color-fd-card: #13112a;
+  --color-fd-card-foreground: #f2f3f7;
+  --color-fd-border: rgba(255, 255, 255, 0.08);
+  --color-fd-primary: #c3f425;
+  --color-fd-primary-foreground: #0b0a14;
+  --color-fd-secondary: #1c1a33;
+  --color-fd-secondary-foreground: #f2f3f7;
+  --color-fd-accent: rgba(195, 244, 37, 0.1);
+  --color-fd-accent-foreground: #c3f425;
+  --color-fd-ring: #24e0cf;
+}
+
+.dark #nd-sidebar {
+  --color-fd-muted: #1c1a33;
+  --color-fd-secondary: #1c1a33;
+  --color-fd-muted-foreground: #a3a6bd;
+}
+
+html {
+  scrollbar-gutter: stable;
+  background: var(--ano-night);
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+
+body {
+  background:
+    radial-gradient(900px 500px at 10% -10%, rgba(195, 244, 37, 0.08), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(36, 224, 207, 0.08), transparent 60%),
+    var(--ano-night);
+}
+
+.ano-gradient-text {
+  background: linear-gradient(90deg, var(--ano-lime), var(--ano-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ano-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.ano-btn:hover {
+  transform: translateY(-1px);
+}
+.ano-btn-primary {
+  background: linear-gradient(90deg, var(--ano-lime), var(--ano-cyan));
+  color: var(--ano-night);
+  box-shadow: 0 8px 30px rgba(195, 244, 37, 0.2);
+}
+.ano-btn-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f2f3f7;
+}
+.ano-btn-ghost:hover {
+  border-color: var(--ano-cyan);
+}
+
+.ano-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(23, 21, 43, 0.7);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  text-align: left;
+  transition: border-color 0.15s ease;
+}
+.ano-card:hover {
+  border-color: rgba(195, 244, 37, 0.45);
+}

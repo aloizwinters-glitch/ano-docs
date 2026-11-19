@@ -1,0 +1,61 @@
+---
+title: Installation
+description: Download your ANO script from Keymaster and start it on your server.
+---
+
+## 1. Download from Keymaster
+
+After your purchase, the script is linked to the **Cfx.re account** you used to log in on the store.
+
+<Steps>
+<Step>
+Go to [keymaster.fivem.net](https://keymaster.fivem.net/asset-grants) and log in with the same Cfx.re account.
+</Step>
+<Step>
+Open **Granted Assets** and download the script.
+</Step>
+<Step>
+Extract the folder into your server `resources` directory. **Do not rename the folder**: escrowed resources only start with their original name.
+</Step>
+</Steps>
+
+<Callout type="warn">
+  The server license key in your `server.cfg` must belong to the **same Cfx.re account** that bought the script, otherwise you will get an entitlement error.
+</Callout>
+
+## 2. Install dependencies
+
+Each script page lists its exact dependencies. Most ANO scripts use:
+
+| Resource | Required | Link |
+| --- | --- | --- |
+| `ox_lib` | Yes | [GitHub](https://github.com/overextended/ox_lib/releases) |
+| `oxmysql` | When the script stores data | [GitHub](https://github.com/overextended/oxmysql/releases) |
+| `ox_target` / `qb-target` | Optional | Used when installed |
+
+## 3. Import the SQL (if any)
+
+If the script folder contains an `install.sql` file, run it in your database (HeidiSQL, phpMyAdmin...) **before** starting the script.
+
+## 4. Add it to `server.cfg`
+
+Start the dependencies first, then your framework, then the script:
+
+```ini title="server.cfg"
+ensure oxmysql
+ensure ox_lib
+
+# your framework (es_extended, qb-core, qbx_core or qs-core)
+ensure qb-core
+
+ensure ox_target
+
+# ANO Scripts
+ensure ano_example
+```
+
+## 5. Configure
+
+Open `config.lua` and adjust the settings. The framework is detected automatically (`Config.Framework = 'auto'`), see [Frameworks](/docs/getting-started/frameworks).
+
+Restart your server (not only the resource) after the first installation.

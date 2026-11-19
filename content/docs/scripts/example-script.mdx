@@ -1,0 +1,110 @@
+---
+title: ANO Example Script
+description: Template page. Duplicate this file for each script and replace the content.
+---
+
+<Callout title="Template">
+  This page is an example. Copy `content/docs/scripts/example-script.mdx`, rename it (e.g. `ano-garage.mdx`), add it to `scripts/meta.json` and replace the content below.
+</Callout>
+
+## Overview
+
+Short description of what the script does and why it is better.
+
+- Feature one
+- Feature two
+- Feature three
+
+| | |
+| --- | --- |
+| **Version** | 1.0.0 |
+| **Frameworks** | ESX, QBCore, Qbox, QS-Core, standalone |
+| **Resmon** | 0.00 ms idle |
+| **Store** | [Buy on Tebex](https://ano-scripts.tebex.store) |
+
+## Dependencies
+
+- [ox_lib](https://github.com/overextended/ox_lib/releases)
+- [oxmysql](https://github.com/overextended/oxmysql/releases)
+- `ox_target` or `qb-target` (optional)
+
+## Installation
+
+<Steps>
+<Step>
+Download `ano_example` from [Keymaster](https://keymaster.fivem.net/asset-grants) and place it in your `resources` folder.
+</Step>
+<Step>
+Import `install.sql` into your database.
+</Step>
+<Step>
+Add the item to your inventory (see [Items](#items)).
+</Step>
+<Step>
+Add `ensure ano_example` to your `server.cfg`, after your framework and dependencies.
+</Step>
+</Steps>
+
+## Configuration
+
+```lua title="config.lua"
+Config = {}
+
+Config.Framework = 'auto' -- 'auto', 'qbx', 'qs', 'esx', 'qb', 'standalone'
+Config.Locale = 'en'
+Config.Debug = false
+
+Config.Price = 500        -- price paid by the player
+Config.Account = 'bank'   -- 'cash' or 'bank'
+```
+
+## Items
+
+<Tabs items={['ox_inventory', 'qb-inventory', 'ESX (SQL)']}>
+<Tab value="ox_inventory">
+```lua title="ox_inventory/data/items.lua"
+['ano_item'] = {
+    label = 'ANO Item',
+    weight = 100,
+    stack = true,
+},
+```
+</Tab>
+<Tab value="qb-inventory">
+```lua title="qb-core/shared/items.lua"
+ano_item = { name = 'ano_item', label = 'ANO Item', weight = 100, type = 'item', image = 'ano_item.png', unique = false, useable = true, shouldClose = true, description = 'ANO Item' },
+```
+</Tab>
+<Tab value="ESX (SQL)">
+```sql
+INSERT INTO items (name, label, weight) VALUES ('ano_item', 'ANO Item', 1);
+```
+</Tab>
+</Tabs>
+
+## Exports
+
+### Server
+
+```lua
+-- Returns true if the player owns at least one item
+local hasIt = exports.ano_example:HasSomething(source)
+```
+
+### Client
+
+```lua
+exports.ano_example:OpenMenu()
+```
+
+## Events
+
+| Event | Side | Description |
+| --- | --- | --- |
+| `ano_example:client:opened` | Client | Fired when the menu opens |
+| `ano_example:server:done` | Server | Fired after a successful action (source, data) |
+
+## Changelog
+
+### 1.0.0
+- Initial release
